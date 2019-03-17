@@ -309,8 +309,8 @@ session_start();
                             <div class="col-sm-9">
                                 <select class="custom-select mr-sm-2" id="roomRequirement" name="roomRequirement">
                                     <option value="no preference" selected>No preference</option>
-                                    <option value="non smoking">Non smoking</option>
-                                    <option value="smoking">Smoking</option>
+                                    <option value="non smoking">Non Ac</option>
+                                    <option value="smoking">Ac</option>
                                 </select>
                             </div>
                         </div>
