@@ -179,10 +179,10 @@ session_start();
                     <tr>
                         <th scope="col">#</th>
                         <th class="text-hide p-0" data-bookId="12">12</th>
-                        <th scope="col">Email</th>
+                        <!--<th scope="col">Email</th>-->
                         <th scope="col">Start</th>
                         <th scope="col">End</th>
-                        <th scope="col">Room type</th>
+                        <th scope="col">Room</th>
                         <th scope="col">Timestamp</th>
                         <th scope="col">Status</th>
                         <th scope="col">Notes</th>
@@ -192,18 +192,18 @@ session_start();
                     <?php if (!empty($allBookings)) { ?>
                         <?php   foreach ($allBookings as $k => $v) { ?>
                             <tr>
-                                <th scope="row"><?php echo ($k + 1); ?></th>
+                                <th scope="row"><?php echo "YN".$v["id"]; ?></th>
                                 <td class="text-hide p-0" data-id="<?php echo $v["id"]; ?>">
                                     <?php echo $v["id"]; ?>
                                 </td>
                                 <?php $cid = $v["cid"]; ?>
-                                <td><?php echo $cCommon->getCustomerObjByCid($cid)->getEmail(); ?></td>
+                                <!--<td><?php echo $cCommon->getCustomerObjByCid($cid)->getEmail(); ?></td>-->
                                 <td><?php echo $v["start"]; ?></td>
                                 <td><?php echo $v["end"]; ?></td>
                                 <td><?php echo $v["type"]; ?></td>
                                 <td><?php echo $v["timestamp"]; ?></td>
                                 <td><?php echo $v["status"]; ?></td>
-                                <td><?php echo $v["notes"]; ?></td>
+                                <td><?php echo $v["requirement"].". ".$v["requests"]; ?></td>
                             </tr>
                         <?php } ?>
                     <?php } ?>

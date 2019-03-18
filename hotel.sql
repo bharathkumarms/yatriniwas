@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2019 at 05:56 PM
+-- Generation Time: Mar 18, 2019 at 06:37 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -44,9 +44,11 @@ INSERT INTO `booking` (`id`, `cid`, `status`, `notes`) VALUES
 (13, 10, 'confirmed', NULL),
 (14, 10, 'CANCELLED', NULL),
 (15, 14, 'CONFIRMED', NULL),
-(16, 14, 'CONFIRMED', NULL),
+(16, 14, 'CANCELLED', NULL),
 (17, 14, 'CONFIRMED', NULL),
-(18, 14, 'CONFIRMED', NULL);
+(18, 14, 'CONFIRMED', NULL),
+(19, 14, 'CONFIRMED', NULL),
+(20, 14, 'CONFIRMED', NULL);
 
 -- --------------------------------------------------------
 
@@ -104,7 +106,9 @@ INSERT INTO `reservation` (`id`, `start`, `end`, `type`, `requirement`, `adults`
 (15, '2019-03-17', '2019-03-18', 'deluxe', 'no preference', 1, 0, '', '2019-03-17 10:26:01', '5c8e20b9140e7'),
 (16, '2019-03-18', '2019-03-19', 'deluxe', 'no preference', 1, 0, '', '2019-03-17 10:38:45', '5c8e23b5a805f'),
 (17, '2019-03-28', '2019-03-30', 'deluxe', 'no preference', 1, 0, 'I will need travel desk help to visit few other temples in  Kanchipuram, please.', '2019-03-17 14:21:24', '5c8e57e4b1111'),
-(18, '2019-03-25', '2019-03-26', 'deluxe', 'smoking', 1, 1, '', '2019-03-17 14:29:50', '5c8e59debc3f7');
+(18, '2019-03-25', '2019-03-26', 'deluxe', 'Ac, Ganga jal', 1, 1, '', '2019-03-17 14:29:50', '5c8e59debc3f7'),
+(19, '2019-03-18', '2019-03-19', 'deluxe', 'no preference', 1, 0, '', '2019-03-18 03:41:35', '5c8f136f56c5f'),
+(20, '2019-03-18', '2019-03-19', 'deluxe', 'no preference', 1, 0, '', '2019-03-18 03:42:32', '5c8f13a883c4a');
 
 --
 -- Indexes for dumped tables
@@ -139,7 +143,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `customer`

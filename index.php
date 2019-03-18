@@ -111,9 +111,9 @@ session_start();
             <tr>
                 <th scope="col">#</th>
                 <th class="text-hide p-0" data-bookId="12">12</th>
-                <th scope="col">Start date</th>
-                <th scope="col">End date</th>
-                <th scope="col">Room type</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
+                <th scope="col">Room</th>
                 <th scope="col">Requirements</th>
                 <th scope="col">Adults</th>
                 <th scope="col">Children</th>
@@ -126,7 +126,7 @@ session_start();
             <?php if (!empty($cBookings) && $bdHandler->getExecutionFeedback() == 1) { ?>
                 <?php   foreach ($cBookings as $k => $v) { ?>
                     <tr>
-                        <th scope="row"><?php echo ($k + 1); ?></th>
+                        <th scope="row"><?php echo "YN".$v["id"]; ?></th>
                         <td class="text-hide p-0"><?php echo $v["id"]; ?></td>
                         <td><?php echo $v["start"]; ?></td>
                         <td><?php echo $v["end"]; ?></td>
@@ -340,7 +340,7 @@ session_start();
                             </div>
                         </div>
                         <div class="form-group row align-items-center">
-                            <label class="col-sm-3 col-form-label" for="specialRequests">Special requirements</label>
+                            <label class="col-sm-3 col-form-label" for="specialRequests">Name, address & special requirements</label>
                             <div class="col-sm-9">
                                 <textarea rows="3" maxlength="500" id="specialRequests" name="specialRequests" class="form-control"></textarea>
                             </div>
