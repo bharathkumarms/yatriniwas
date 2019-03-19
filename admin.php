@@ -214,7 +214,7 @@ session_start();
                                 <td><?php echo $v["type"]; ?></td>
                                 <!--<td><?php echo $v["timestamp"]; ?></td>-->
                                 <td><?php echo $v["status"]; ?></td>
-                                <td><?php echo $cCommon->getCustomerObjByCid($cid)->getEmail().". ".$v["timestamp"].". ".$v["requirement"].". ".$v["requests"]; ?></td>
+                                <td><?php echo $cCommon->getCustomerObjByCid($cid)->getPhone().". ".$cCommon->getCustomerObjByCid($cid)->getEmail().". ".$v["timestamp"].". ".$v["requirement"].". ".$v["requests"]; ?></td>
                             </tr>
                         <?php } ?>
                     <?php } ?>
