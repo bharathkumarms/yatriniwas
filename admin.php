@@ -325,6 +325,8 @@ session_start();
 <script src="js/form-submission.js"></script>
 <script src="js/admin.js"></script>
 <script src="static/jquery-ui.js"></script>
+<script src="static/dataTables.buttons.min.js"></script>
+<script src="static/buttons.print.min.js"></script>
 <script>
     $(document).ready(function () {
 
@@ -346,7 +348,6 @@ session_start();
         return false;
     }
     );
-
 
         $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
         $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
