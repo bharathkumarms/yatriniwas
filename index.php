@@ -464,7 +464,7 @@ session_start();
             reservationDiv.slideToggle( "slow");
         });
         var table = $('#myReservationsTbl').DataTable({
-      paging: false,
+      paging: true,
       columnDefs: [{
         targets: 'no-sort',
         orderable: false
