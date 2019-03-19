@@ -13,6 +13,7 @@ session_start();
     <link rel="stylesheet" href="static/jquery.dataTables.min.css">
     <link rel="stylesheet" href="static/select.dataTables.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="static/jquery-ui.css">
     <?php
 
     require 'lib/phpPasswordHashing/passwordLib.php';
@@ -174,6 +175,16 @@ session_start();
         </ul>
         <div class="tab-content py-3" id="adminTabContent">
             <div class="tab-pane fade show active" id="reservation" role="tabpanel" aria-labelledby="reservation-tab">
+            <table border="0" cellspacing="5" cellpadding="5">
+            <tbody><tr>
+                <td>Start:</td>
+                <td><input type="text" id="min" name="min"></td>
+            </tr>
+            <tr>
+                <td>End:</td>
+                <td><input type="text" id="max" name="max"></td>
+            </tr>
+            </tbody></table>
                 <table id="reservationDataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                     <tr>
@@ -183,7 +194,7 @@ session_start();
                         <th scope="col">Start</th>
                         <th scope="col">End</th>
                         <th scope="col">Room</th>
-                        <th scope="col">Timestamp</th>
+                        <!--<th scope="col">Timestamp</th>-->
                         <th scope="col">Status</th>
                         <th scope="col">Notes</th>
                     </tr>
@@ -201,9 +212,9 @@ session_start();
                                 <td><?php echo $v["start"]; ?></td>
                                 <td><?php echo $v["end"]; ?></td>
                                 <td><?php echo $v["type"]; ?></td>
-                                <td><?php echo $v["timestamp"]; ?></td>
+                                <!--<td><?php echo $v["timestamp"]; ?></td>-->
                                 <td><?php echo $v["status"]; ?></td>
-                                <td><?php echo $v["requirement"].". ".$v["requests"]; ?></td>
+                                <td><?php echo $cCommon->getCustomerObjByCid($cid)->getEmail().". ".$v["timestamp"].". ".$v["requirement"].". ".$v["requests"]; ?></td>
                             </tr>
                         <?php } ?>
                     <?php } ?>
@@ -313,5 +324,39 @@ session_start();
 <script src="static/dataTables.select.min.js"></script>
 <script src="js/form-submission.js"></script>
 <script src="js/admin.js"></script>
+<script src="static/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $.fn.dataTable.ext.search.push(
+          function (settings, data, dataIndex) {
+        var min = $('#min').datepicker("getDate");
+        var max = $('#max').datepicker("getDate");
+        var startDate = new Date(data[2]);
+        var endDate = new Date(data[3]);
+        if(min != null){min.setHours(0,0,0,0)}
+        if(max != null){max.setHours(0,0,0,0)}
+        if(startDate != null){startDate.setHours(0,0,0,0)}
+        if(endDate != null){endDate.setHours(0,0,0,0)}
+        //alert(startDate + " hi "+ endDate + " hi " + min + " hi " + max)
+        if (min == null && max == null) { return true; }
+        if (min == null && startDate <= max) { return true;}
+        if(max == null && endDate >= min) {return true;}
+        if (startDate < max && endDate > min) { return true; }
+        return false;
+    }
+    );
+
+
+        $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+        $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+        var table = $('#reservationDataTable').DataTable();
+
+        // Event listener to the two range filtering inputs to redraw on input
+        $('#min, #max').change(function () {
+            table.draw();
+        });
+    });
+</script>
 </body>
 </html>
