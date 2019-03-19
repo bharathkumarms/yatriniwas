@@ -453,6 +453,9 @@ session_start();
 <script src="static/dataTables.select.min.js"></script>
 <script src="js/form-submission.js"></script>
 <script src="static/jquery-ui.js"></script>
+<script src="static/dataTables.buttons.min.js"></script>
+<script src="static/buttons.print.min.js"></script>
+
 <script>
     $(document).ready(function () {
         let reservationDiv = $("#my-reservations-div");
@@ -460,7 +463,47 @@ session_start();
         $(".my-reservations").click(function() {
             reservationDiv.slideToggle( "slow");
         });
-        $('#myReservationsTbl').DataTable();
+        var table = $('#myReservationsTbl').DataTable({
+      paging: false,
+      columnDefs: [{
+        targets: 'no-sort',
+        orderable: false
+      }],
+      dom: '<"row"<"col-sm-6"Bl><"col-sm-6"f>>' +
+        '<"row"<"col-sm-12"<"table-responsive"tr>>>' +
+        '<"row"<"col-sm-5"i><"col-sm-7"p>>',
+      fixedHeader: {
+        header: true
+      },
+      buttons: {
+        buttons: [{
+          extend: 'print',
+          text: '<i class="fa fa-print"></i> Print',
+          title: "Yatri Nivas, Kanchi Kamakoti Peetham. 1, Kamarajar St, Periya, Kanchipuram, Tamil Nadu 631502",
+          exportOptions: {
+            columns: ':not(.no-print)'
+          },
+          footer: true,
+          autoPrint: true
+        }, {
+          extend: 'pdf',
+          text: '<i class="fa fa-file-pdf-o"></i> PDF',
+          title: $('h1').text(),
+          exportOptions: {
+            columns: ':not(.no-print)'
+          },
+          footer: true
+        }],
+        dom: {
+          container: {
+            className: 'dt-buttons'
+          },
+          button: {
+            className: 'btn btn-default'
+          }
+        }
+      }
+    });
 
         $.fn.dataTable.ext.search.push(
           function (settings, data, dataIndex) {
@@ -474,17 +517,17 @@ session_start();
         if(endDate != null){endDate.setHours(0,0,0,0)}
         //alert(startDate + " hi "+ endDate + " hi " + min + " hi " + max)
         if (min == null && max == null) { return true; }
-        if (min == null && startDate <= max) { return true;}
-        if(max == null && endDate >= min) {return true;}
+        if (min == null && startDate < max) { return true;}
+        if(max == null && endDate > min) {return true;}
         if (startDate < max && endDate > min) { return true; }
         return false;
     }
     );
-
+    //var table = $('#myReservationsTbl').DataTable();
 
         $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
         $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
-        var table = $('#myReservationsTbl').DataTable();
+        
 
         // Event listener to the two range filtering inputs to redraw on input
         $('#min, #max').change(function () {
