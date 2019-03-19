@@ -340,8 +340,8 @@ session_start();
         if(endDate != null){endDate.setHours(0,0,0,0)}
         //alert(startDate + " hi "+ endDate + " hi " + min + " hi " + max)
         if (min == null && max == null) { return true; }
-        if (min == null && startDate <= max) { return true;}
-        if(max == null && endDate >= min) {return true;}
+        if (min == null && startDate < max) { return true;}
+        if(max == null && endDate > min) {return true;}
         if (startDate < max && endDate > min) { return true; }
         return false;
     }
